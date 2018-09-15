@@ -7,11 +7,13 @@ import { AppComponent } from './app.component';
 import { ControlComponent } from './control.component';
 import { RequestService } from './request.service';
 import { valueReducer } from './reducers';
+import { FormSignUpComponent } from './components/form-sign-up/form-sign-up.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ControlComponent
+    ControlComponent,
+    FormSignUpComponent
   ],
   imports: [
     BrowserModule,

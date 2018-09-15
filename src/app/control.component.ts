@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
 
 @Component({
     selector: 'app-control',
@@ -9,9 +10,15 @@ import { Component } from '@angular/core';
 })
 
 export class ControlComponent {
-    increase() {}
+    constructor(private store: Store<any>) {}
 
-    decrease() {}
+    increase() {
+        this.store.dispatch({ type: 'INCREASE' });
+    }
+
+    decrease() {
+        this.store.dispatch({ type: 'DECREASE' });
+    }
 }
 
 // dinh nghia store thong qua reducer function
