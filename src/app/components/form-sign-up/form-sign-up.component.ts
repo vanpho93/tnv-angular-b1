@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form-sign-up',
@@ -7,9 +7,10 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./form-sign-up.component.css']
 })
 export class FormSignUpComponent implements OnInit {
+
   formSignUp = new FormGroup({
-    email: new FormControl('vanpho01@gmail.com'),
-    name: new FormControl('pho'),
+    email: new FormControl('', Validators.required),
+    name: new FormControl('', [Validators.required, Validators.minLength(4)]),
     city: new FormControl('Sai Gon'),
     zip: new FormControl('70000'),
   });
@@ -19,4 +20,5 @@ export class FormSignUpComponent implements OnInit {
   ngOnInit() {
   }
 
+  signUp() { alert(JSON.stringify(this.formSignUp.value)); }
 }
