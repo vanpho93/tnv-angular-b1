@@ -4,7 +4,13 @@ import { Word } from './types';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  template: `
+  <div class="container">
+    <app-form></app-form>
+    <app-filter></app-filter>
+    <app-word *ngFor="let word of words" [word]="word"></app-word>
+  </div>
+  `,
   styleUrls: ['./app.component.css']
 })
 

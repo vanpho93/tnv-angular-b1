@@ -13,5 +13,16 @@ export function wordsReducer (state = defaultWords, action) {
         if (w._id !== action._id) return w;
         return { ...w, isMemorized: !w.isMemorized };
     });
+    if (action.type === 'ADD_WORD') return state.concat(action.word);
+    return state;
+}
+
+export function filterStatusReducer(state = 'SHOW_FORGOT', action) {
+    if (action.type === 'SET_FILTER_STATUS') return action.value;
+    return state;
+}
+
+export function shouldShowFormReducer(state = false, action) {
+    if (action.type === 'TOGGLE_FORM') return !state;
     return state;
 }
