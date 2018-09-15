@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 
 import { AppComponent } from './app.component';
@@ -18,6 +19,8 @@ import { FormSignUpComponent } from './components/form-sign-up/form-sign-up.comp
   imports: [
     BrowserModule,
     HttpModule,
+    FormsModule,
+    ReactiveFormsModule,
     StoreModule.forRoot({ value: valueReducer })
   ],
   providers: [RequestService],
