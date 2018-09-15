@@ -5,23 +5,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 
 import { AppComponent } from './app.component';
-import { ControlComponent } from './control.component';
 import { RequestService } from './request.service';
-import { valueReducer } from './reducers';
-import { FormSignUpComponent } from './components/form-sign-up/form-sign-up.component';
+import { wordsReducer } from './reducers';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ControlComponent,
-    FormSignUpComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({ value: valueReducer })
+    StoreModule.forRoot({ words: wordsReducer })
   ],
   providers: [RequestService],
   bootstrap: [AppComponent],
