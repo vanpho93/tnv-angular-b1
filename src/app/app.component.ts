@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Word } from './types';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +9,8 @@ import { Store } from '@ngrx/store';
 })
 
 export class AppComponent {
-  title = 'app';
-  value: number;
-  constructor(private store: Store<any>) {
-    this.store.select('value').subscribe(x => this.value = x);
-  }
+  words: Word[];
+  constructor(private store: Store<any>) { this.store.select('words').subscribe(w => this.words = w); }
+
+  remove(_id: string) { this.store.dispatch({ type: 'REMOVE_WORD', _id }); }
 }

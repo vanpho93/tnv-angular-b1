@@ -1,16 +1,17 @@
 <div class="container">
-    <div class="word">
+    <div class="word" *ngFor="let word of words">
         <div class="word-container">
-            <h3 class="text-success">One</h3>
-            <h3 class="text-danger">Mot</h3>
+            <h3 class="text-success">{{word.en}}</h3>
+            <h3 class="text-danger">{{word.vn}}</h3>
         </div>
-            <div class="btn-container">
-            <button class="btn btn-success">
+        <div class="btn-container">
+            <button class="btn btn-warning" *ngIf="word.isMemorized">
                 Forgot
             </button>
-            <button
-                class="btn btn-warning"
-            >
+            <button class="btn btn-success" *ngIf="!word.isMemorized">
+                Memorized
+            </button>
+            <button class="btn btn-danger" (click)="remove(word._id);">
                 Remove
             </button>
         </div>
