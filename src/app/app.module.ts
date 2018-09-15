@@ -6,13 +6,15 @@ import { StoreModule } from '@ngrx/store';
 
 import { AppComponent } from './app.component';
 import { WordComponent } from './word.component';
+import { FormComponent } from './form.component';
 import { RequestService } from './request.service';
 import { wordsReducer } from './reducers';
 
 @NgModule({
   declarations: [
     AppComponent,
-    WordComponent
+    WordComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,
