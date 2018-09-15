@@ -5,12 +5,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 
 import { AppComponent } from './app.component';
+import { WordComponent } from './word.component';
 import { RequestService } from './request.service';
 import { wordsReducer } from './reducers';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    WordComponent
   ],
   imports: [
     BrowserModule,
