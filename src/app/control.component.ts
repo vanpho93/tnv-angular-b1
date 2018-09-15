@@ -13,3 +13,8 @@ export class ControlComponent {
 
     decrease() {}
 }
+
+// dinh nghia store thong qua reducer function
+// connect store voi application
+// lay du lieu tu trong store de hien thi trong components
+// thay doi du lieu trong store tu components
