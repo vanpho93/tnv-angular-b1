@@ -13,4 +13,5 @@ export class AppComponent {
   constructor(private store: Store<any>) { this.store.select('words').subscribe(w => this.words = w); }
 
   remove(_id: string) { this.store.dispatch({ type: 'REMOVE_WORD', _id }); }
+  toggle(_id: string) { this.store.dispatch({ type: 'TOGGLE_WORD', _id }); }
 }
