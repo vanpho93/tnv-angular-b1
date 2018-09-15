@@ -9,7 +9,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class FormSignUpComponent implements OnInit {
 
   formSignUp = new FormGroup({
-    email: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
     city: new FormControl('Sai Gon'),
     zip: new FormControl('70000'),
@@ -18,6 +18,13 @@ export class FormSignUpComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  get emailWarningMessage(): string {
+    const emailControl = this.formSignUp.get('email');
+    if (emailControl.untouched || emailControl.valid) return '';
+    if (emailControl.errors.required) return 'Bạn cần nhập email';
+    if (emailControl.errors.email) return 'Email không đúng định dạng';
   }
 
   signUp() { alert(JSON.stringify(this.formSignUp.value)); }
