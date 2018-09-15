@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  value = 0;
+  increase() { this.value++; }
+  decrease() { this.value--; }
 }
