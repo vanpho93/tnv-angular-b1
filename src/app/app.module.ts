@@ -9,6 +9,7 @@ import { WordComponent } from './word.component';
 import { FormComponent } from './form.component';
 import { FilterComponent } from './filter.component';
 import { RequestService } from './request.service';
+import { WordService } from './word.service';
 import { wordsReducer, filterStatusReducer, shouldShowFormReducer } from './reducers';
 
 @NgModule({
@@ -29,7 +30,7 @@ import { wordsReducer, filterStatusReducer, shouldShowFormReducer } from './redu
       shouldShowForm: shouldShowFormReducer
     })
   ],
-  providers: [RequestService],
+  providers: [RequestService, WordService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

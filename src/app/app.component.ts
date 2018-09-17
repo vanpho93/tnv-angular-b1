@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Word } from './types';
-import { RequestService } from './request.service';
-
+import { WordService } from './word.service';
 @Component({
   selector: 'app-root',
   template: `
@@ -17,9 +16,8 @@ import { RequestService } from './request.service';
 
 export class AppComponent {
   words: Word[];
-  constructor(private store: Store<any>, private request: RequestService) {
+  constructor(private store: Store<any>, private wordService: WordService) {
     this.store.select('words').subscribe(w => this.words = w);
-    this.request.get('/word')
-    .then(words => this.store.dispatch({ type: 'SET_WORDS', words }));
+    this.wordService.getAll();
   }
 }

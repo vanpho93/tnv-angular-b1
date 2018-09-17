@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Word } from './types';
+import { WordService } from './word.service';
 
 @Component({
     selector: 'app-word',
@@ -11,13 +12,13 @@ import { Word } from './types';
               <h3 class="text-danger">{{word.vn}}</h3>
           </div>
           <div class="btn-container">
-              <button class="btn btn-warning" *ngIf="word.isMemorized" (click)="toggle(word._id);">
+              <button class="btn btn-warning" *ngIf="word.isMemorized" (click)="toggle();">
                   Forgot
               </button>
-              <button class="btn btn-success" *ngIf="!word.isMemorized" (click)="toggle(word._id);">
+              <button class="btn btn-success" *ngIf="!word.isMemorized" (click)="toggle();">
                   Memorized
               </button>
-              <button class="btn btn-danger" (click)="remove(word._id);">
+              <button class="btn btn-danger" (click)="remove();">
                   Remove
               </button>
           </div>
@@ -28,7 +29,7 @@ import { Word } from './types';
 export class WordComponent {
     @Input() word: Word;
     filterStatus: string;
-    constructor(private store: Store<any>) {
+    constructor(private store: Store<any>, private wordService: WordService) {
         this.store.select('filterStatus').subscribe(f => this.filterStatus = f);
     }
 
@@ -38,6 +39,7 @@ export class WordComponent {
         return this.word.isMemorized;
     }
 
-    remove(_id: string) { this.store.dispatch({ type: 'REMOVE_WORD', _id }); }
-    toggle(_id: string) { this.store.dispatch({ type: 'TOGGLE_WORD', _id }); }
+    remove() { this.wordService.removeWord(this.word._id); }
+
+    toggle() { this.wordService.toggleWord(this.word._id, !this.word.isMemorized); }
 }

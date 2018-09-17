@@ -16,7 +16,7 @@ app.get('/word', (req, res) => {
     // Show ra tat ca words
     Word.find({})
         .then(words => res.send({ success: true, result: words }))
-        .catch(error => res.send({ success: false, error: error.message }));
+        .catch(error => res.send({ success: false, message: error.message }));
 });
 
 app.delete('/word/:_id', (req, res) => {
@@ -25,7 +25,7 @@ app.delete('/word/:_id', (req, res) => {
             if (!word) throw new Error('Cannot find word.');
             res.send({ success: true, result: word });
         })
-        .catch(error => res.send({ success: false, error: error.message }))
+        .catch(error => res.send({ success: false, message: error.message }))
 });
 
 app.post('/word', (req, res) => {
@@ -33,7 +33,7 @@ app.post('/word', (req, res) => {
     const word = new Word({ en, vn });
     word.save()
         .then(word => res.send({ success: true, result: word }))
-        .catch(error => res.send({ success: false, error: error.message }));
+        .catch(error => res.send({ success: false, message: error.message }));
 });
 
 app.put('/word/:_id', (req, res) => {
@@ -43,7 +43,7 @@ app.put('/word/:_id', (req, res) => {
             if (!word) throw new Error('Cannot find word.');
             res.send({ success: true, result: word });
         })
-        .catch(error => res.send({ success: false, error: error.message }));
+        .catch(error => res.send({ success: false, message: error.message }));
 });
 
 app.listen(process.env.PORT || 4000, () => console.log('Server started.'));

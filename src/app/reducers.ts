@@ -11,7 +11,7 @@ export function wordsReducer (state: Word[] = [], action): Word[] {
     return state;
 }
 
-export function filterStatusReducer(state = 'SHOW_FORGOT', action): string {
+export function filterStatusReducer(state = 'SHOW_ALL', action): string {
     if (action.type === 'SET_FILTER_STATUS') return action.value;
     return state;
 }

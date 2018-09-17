@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { Word } from './types';
+import { WordService } from './word.service';
 
 @Component({
     selector: 'app-form',
@@ -49,7 +49,7 @@ import { Word } from './types';
 
 export class FormComponent {
     shouldShowForm: boolean;
-    constructor(private store: Store<any>) {
+    constructor(private store: Store<any>, private wordService: WordService) {
         this.store.select('shouldShowForm').subscribe(s => this.shouldShowForm = s);
     }
     formNewWord = new FormGroup({
@@ -59,10 +59,11 @@ export class FormComponent {
 
     addWord() {
         const { en, vn } = this.formNewWord.value;
-        const word: Word = { _id: Date.now() + '', en, vn, isMemorized: false };
-        this.store.dispatch({ type: 'ADD_WORD', word });
-        this.toggleForm();
-        this.formNewWord.reset();
+        this.wordService.createWord(en, vn)
+        .then(() => {
+            this.toggleForm();
+            this.formNewWord.reset();
+        });
     }
 
     toggleForm() { this.store.dispatch({ type: 'TOGGLE_FORM' }); }
