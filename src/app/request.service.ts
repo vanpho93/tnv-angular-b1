@@ -13,7 +13,7 @@ export class RequestService {
         return response.then(res => res.json())
         .catch(error => error.json())
         .then(resJson => {
-            if (!resJson.success) return Promise.reject(resJson);
+            if (!resJson.success) return Promise.reject(new Error(resJson.message));
             return resJson.result;
         });
     }
