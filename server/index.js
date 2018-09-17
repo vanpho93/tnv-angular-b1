@@ -12,6 +12,8 @@ app.get('/', (req, res) => res.send('Running'));
 app.use(cors());
 app.use(parser);
 
+app.use((req, res, next) => setTimeout(next, 1500));
+
 app.get('/word', (req, res) => {
     // Show ra tat ca words
     Word.find({})

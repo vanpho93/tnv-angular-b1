@@ -19,13 +19,13 @@ export class WordService {
     }
 
     removeWord(_id: string) {
-        this.request.delete(`/word/${_id}`)
+        return this.request.delete(`/word/${_id}`)
         .then(() => this.store.dispatch({ type: 'REMOVE_WORD', _id }))
         .catch(error => alert(error.message));
     }
 
     toggleWord(_id: string, isMemorized: boolean) {
-        this.request.put(`/word/${_id}`, { isMemorized })
+        return this.request.put(`/word/${_id}`, { isMemorized })
         .then(() => this.store.dispatch({ type: 'TOGGLE_WORD', _id }))
         .catch(error => alert(error.message));
     }

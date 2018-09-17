@@ -32,12 +32,14 @@ import { WordService } from './word.service';
               <button
                   class="btn btn-success"
                   type="submit"
+                  [disabled]="loading"
               >
-                  Add word
+                  {{ loading ? 'Loading...': 'Add word' }}
               </button>
               <button
                   class="btn btn-danger"
                   (click)="toggleForm();"
+                  [disabled]="loading"
               >
                   Cancel
               </button>
@@ -49,6 +51,7 @@ import { WordService } from './word.service';
 
 export class FormComponent {
     shouldShowForm: boolean;
+    loading = false;
     constructor(private store: Store<any>, private wordService: WordService) {
         this.store.select('shouldShowForm').subscribe(s => this.shouldShowForm = s);
     }
@@ -58,11 +61,13 @@ export class FormComponent {
     });
 
     addWord() {
+        this.loading = true;
         const { en, vn } = this.formNewWord.value;
         this.wordService.createWord(en, vn)
         .then(() => {
             this.toggleForm();
             this.formNewWord.reset();
+            this.loading = false;
         });
     }
 
